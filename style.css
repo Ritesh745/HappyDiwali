@@ -1,0 +1,694 @@
+/* =========================================
+   DIWALI - FESTIVAL OF LIGHTS
+   Main visual stylesheet
+========================================= */
+
+:root {
+    --gold: #f9ca70;
+    --gold-light: #ffe8a8;
+    --orange: #ff9b36;
+    --deep: #100b13;
+    --cream: #fff2d1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: #09070d;
+    color: var(--cream);
+    font-family: 'Poppins', sans-serif;
+    transition: background 3s ease;
+}
+
+body.lit-mode {
+    background:
+        radial-gradient(ellipse at 50% 75%, #66301c 0%, transparent 55%),
+        radial-gradient(ellipse at 50% 0%, #382016 0%, transparent 60%),
+        linear-gradient(145deg, #160d17, #28120f, #100b13);
+}
+
+/* Background layers */
+
+#fireworks {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.ambient-glow {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background: radial-gradient(
+        circle at 50% 55%,
+        rgba(255, 150, 40, 0.0),
+        transparent 60%
+    );
+    transition: background 3s ease;
+}
+
+.lit-mode .ambient-glow {
+    background: radial-gradient(
+        circle at 50% 55%,
+        rgba(255, 166, 48, 0.18),
+        transparent 70%
+    );
+}
+
+.grain {
+    position: fixed;
+    inset: 0;
+    opacity: 0.08;
+    pointer-events: none;
+    z-index: 20;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E");
+}
+
+/* Decorative mandalas */
+
+.background-decor {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.mandala {
+    position: absolute;
+    color: rgba(255, 193, 100, 0.07);
+    font-size: 260px;
+    animation: rotateMandala 80s linear infinite;
+}
+
+.mandala-one {
+    top: 8%;
+    left: -130px;
+}
+
+.mandala-two {
+    bottom: 0;
+    right: -120px;
+    animation-direction: reverse;
+    font-size: 220px;
+}
+
+@keyframes rotateMandala {
+    to { transform: rotate(360deg); }
+}
+
+/* Hanging decorative lights */
+
+.light-string {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.hanging-light {
+    width: 12px;
+    height: 20px;
+    margin-top: 12px;
+    position: relative;
+    background: #6e351d;
+    border-radius: 2px 2px 8px 8px;
+    opacity: 0.12;
+    transition: all 2s ease;
+}
+
+.hanging-light::before {
+    content: "";
+    position: absolute;
+    width: 1px;
+    height: 15px;
+    background: #b18a4c;
+    bottom: 100%;
+    left: 50%;
+}
+
+.hanging-light.lit {
+    opacity: 1;
+    background: #ffb347;
+    box-shadow: 0 0 12px #ff9b36, 0 0 30px #ff9b36;
+    animation: bulbGlow 2s infinite alternate;
+}
+
+@keyframes bulbGlow {
+    from { filter: brightness(0.8); }
+    to { filter: brightness(1.5); }
+}
+
+/* Main layout */
+
+.main-container {
+    min-height: 100svh;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 75px 20px 65px;
+}
+
+.welcome-screen,
+.celebration-screen {
+    width: 100%;
+    max-width: 650px;
+    text-align: center;
+    transition: opacity 1.5s ease, transform 1.5s ease;
+}
+
+/* Opening content */
+
+.welcome-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 30px;
+}
+
+.welcome-top p,
+.celebration-label {
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: 5px;
+}
+
+.small-star {
+    color: var(--gold);
+    animation: starPulse 2s infinite alternate;
+}
+
+@keyframes starPulse {
+    to {
+        opacity: 0.3;
+        transform: scale(0.6);
+    }
+}
+
+.intro-text {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(22px, 5vw, 32px);
+    color: #e7c994;
+    line-height: 1.5;
+}
+
+.second-line {
+    opacity: 0.7;
+}
+
+/* Diya stage */
+
+.diya-stage {
+    width: 180px;
+    height: 220px;
+    margin: 15px auto 12px;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.diya-glow {
+    position: absolute;
+    width: 190px;
+    height: 190px;
+    bottom: 0;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 144, 30, 0.38),
+        rgba(255, 110, 20, 0.06) 55%,
+        transparent 70%
+    );
+    opacity: 0.08;
+    transition: opacity 2s, transform 2s;
+}
+
+.lit-mode .diya-glow {
+    opacity: 1;
+    transform: scale(1.6);
+}
+
+.diya {
+    position: relative;
+    width: 115px;
+    height: 65px;
+    z-index: 3;
+    margin-bottom: 18px;
+}
+
+.diya-top {
+    position: absolute;
+    width: 120px;
+    height: 23px;
+    left: -3px;
+    top: 0;
+    border-radius: 50%;
+    background: linear-gradient(
+        180deg,
+        #ffdc8b,
+        #b75b1f 65%,
+        #7b351a
+    );
+    border: 2px solid #d9913c;
+    box-shadow: inset 0 3px 5px rgba(255, 255, 255, 0.4);
+}
+
+.diya-body {
+    position: absolute;
+    top: 8px;
+    left: 4px;
+    width: 107px;
+    height: 50px;
+    border-radius: 10px 10px 55px 55px;
+    background: linear-gradient(
+        160deg,
+        #f4a64b,
+        #b94717 60%,
+        #672313
+    );
+    box-shadow:
+        inset 0 -8px 10px rgba(0,0,0,0.35),
+        0 10px 20px rgba(0,0,0,0.4);
+}
+
+.diya-pattern {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 17px;
+    color: #ffe1a1;
+    font-size: 12px;
+    letter-spacing: 4px;
+}
+
+.diya-base {
+    position: absolute;
+    width: 90px;
+    height: 12px;
+    background: linear-gradient(#b75c25, #652717);
+    bottom: -8px;
+    left: 12px;
+    border-radius: 50%;
+}
+
+/* Flame animation */
+
+.flame-container {
+    position: absolute;
+    width: 45px;
+    height: 80px;
+    left: 50%;
+    bottom: 79px;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 1s ease;
+    z-index: 4;
+}
+
+.lit-mode .flame-container {
+    opacity: 1;
+}
+
+.flame {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50% 50% 35% 35%;
+    transform-origin: center bottom;
+    animation: flicker 0.6s infinite alternate ease-in-out;
+}
+
+.flame-outer {
+    width: 38px;
+    height: 76px;
+    background: linear-gradient(
+        to top,
+        #ff6b00,
+        #ffb52e,
+        #ffdd79
+    );
+    filter: blur(1px);
+}
+
+.flame-middle {
+    width: 25px;
+    height: 55px;
+    background: #ffeb94;
+    animation-delay: 0.1s;
+}
+
+.flame-inner {
+    width: 13px;
+    height: 36px;
+    background: #fff8ce;
+    animation-delay: 0.2s;
+}
+
+.flame-core {
+    position: absolute;
+    width: 7px;
+    height: 17px;
+    background: white;
+    border-radius: 50%;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    filter: blur(2px);
+}
+
+@keyframes flicker {
+    0% { transform: translateX(-50%) rotate(-4deg) scale(0.95, 1); }
+    50% { transform: translateX(-50%) rotate(3deg) scale(1.04, 1.05); }
+    100% { transform: translateX(-50%) rotate(-2deg) scale(0.96, 0.98); }
+}
+
+.opening-heading {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(23px, 5vw, 34px);
+    font-weight: 500;
+    line-height: 1.5;
+    color: #f8e6c2;
+}
+
+.opening-heading span {
+    display: block;
+    color: var(--gold);
+}
+
+.opening-subtitle {
+    font-size: 12px;
+    line-height: 2;
+    color: #c1aa91;
+    margin: 14px 0 26px;
+}
+
+/* Buttons */
+
+.light-button,
+.again-button {
+    border: 1px solid rgba(255, 210, 130, 0.7);
+    color: #40200e;
+    background: linear-gradient(135deg, #ffe7a1, #eaa344);
+    border-radius: 50px;
+    padding: 15px 32px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    box-shadow: 0 0 25px rgba(255, 170, 60, 0.15);
+    transition: all 0.3s ease;
+}
+
+.light-button:hover,
+.again-button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 35px rgba(255, 180, 70, 0.6);
+}
+
+.light-button span {
+    margin-right: 8px;
+}
+
+.tap-hint {
+    margin-top: 18px;
+    color: #8c715a;
+    font-size: 8px;
+    letter-spacing: 3px;
+}
+
+/* Celebration screen */
+
+.celebration-screen {
+    display: none;
+    opacity: 0;
+    transform: translateY(25px);
+}
+
+.celebration-screen.show {
+    display: block;
+    animation: celebrationEnter 2s forwards;
+}
+
+@keyframes celebrationEnter {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.celebration-content {
+    padding: 35px 15px;
+}
+
+.top-ornament,
+.bottom-ornament {
+    color: var(--gold);
+    font-size: 25px;
+    letter-spacing: 12px;
+    margin-bottom: 24px;
+}
+
+.celebration-label {
+    margin-bottom: 18px;
+    font-size: 9px;
+}
+
+.diwali-title {
+    font-family: 'Great Vibes', cursive;
+    font-weight: 400;
+    font-size: clamp(65px, 14vw, 105px);
+    line-height: 1.1;
+    color: #fff0c8;
+    text-shadow: 0 0 25px rgba(255, 186, 76, 0.3);
+}
+
+.diwali-title span {
+    display: block;
+    color: #ffc86d;
+    animation: titleGlow 3s infinite alternate;
+}
+
+@keyframes titleGlow {
+    to {
+        text-shadow:
+            0 0 15px #ffb23c,
+            0 0 40px #ff9c29,
+            0 0 80px #ff7d24;
+    }
+}
+
+.hindi-title {
+    margin-top: 20px;
+    font-family: 'Hind', sans-serif;
+    font-size: clamp(32px, 8vw, 45px);
+    color: #ffdf9a;
+    font-weight: 600;
+    text-shadow: 0 0 25px rgba(255, 178, 63, 0.5);
+}
+
+.golden-divider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--gold);
+    margin: 28px 0;
+}
+
+.golden-divider::before,
+.golden-divider::after {
+    content: "";
+    height: 1px;
+    width: 75px;
+    background: linear-gradient(90deg, transparent, #d89e4c);
+    margin: 0 15px;
+}
+
+.golden-divider::after {
+    transform: rotate(180deg);
+}
+
+.greeting-message {
+    max-width: 420px;
+    margin: auto;
+    font-size: 13px;
+    line-height: 2.2;
+    color: #f5dcb7;
+}
+
+.hindi-message {
+    max-width: 400px;
+    margin: 20px auto;
+    font-family: 'Hind', sans-serif;
+    font-size: 16px;
+    line-height: 2;
+    color: #dfbd8f;
+}
+
+.celebration-diyas {
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    margin: 35px 0;
+}
+
+.mini-diya {
+    font-size: 35px;
+    filter: drop-shadow(0 0 12px #ff9d2e);
+    animation: floatingDiya 2s infinite alternate ease-in-out;
+}
+
+.mini-diya:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.mini-diya:nth-child(3) {
+    animation-delay: 1s;
+}
+
+@keyframes floatingDiya {
+    to { transform: translateY(-12px); }
+}
+
+.final-wish {
+    font-family: 'Great Vibes', cursive;
+    color: #ffc86d;
+    font-size: 32px;
+    margin: 20px 0 30px;
+}
+
+.bottom-ornament {
+    margin: 20px 0;
+}
+
+.again-button {
+    margin-top: 15px;
+}
+
+/* Sound control */
+
+.sound-control {
+    position: fixed;
+    bottom: 24px;
+    right: 20px;
+    z-index: 30;
+}
+
+.sound-control button {
+    border: 1px solid rgba(255, 202, 112, 0.3);
+    border-radius: 30px;
+    background: rgba(40, 20, 15, 0.8);
+    color: #f8d89c;
+    padding: 10px 16px;
+    font-size: 11px;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+}
+
+/* Footer */
+
+.footer-note {
+    position: fixed;
+    bottom: 15px;
+    left: 20px;
+    color: rgba(255, 211, 145, 0.4);
+    font-size: 8px;
+    letter-spacing: 2px;
+    z-index: 30;
+}
+
+/* Floating petals */
+
+.petal {
+    position: fixed;
+    z-index: 1;
+    pointer-events: none;
+    color: #ffbf72;
+    animation: petalFall linear forwards;
+    opacity: 0;
+}
+
+@keyframes petalFall {
+    0% {
+        transform: translateY(-30px) rotate(0deg);
+        opacity: 0;
+    }
+    15% { opacity: 0.8; }
+    100% {
+        transform: translateY(110vh) rotate(500deg);
+        opacity: 0;
+    }
+}
+
+/* Small screens */
+
+@media (max-width: 480px) {
+    .main-container {
+        padding: 60px 18px;
+    }
+
+    .welcome-top p {
+        font-size: 9px;
+        letter-spacing: 3px;
+    }
+
+    .diya-stage {
+        transform: scale(0.9);
+        margin-top: 5px;
+    }
+
+    .opening-subtitle {
+        font-size: 11px;
+    }
+
+    .celebration-content {
+        padding: 20px 5px;
+    }
+
+    .greeting-message {
+        font-size: 12px;
+    }
+
+    .sound-control {
+        bottom: 18px;
+        right: 12px;
+    }
+
+    .footer-note {
+        bottom: 22px;
+        left: 12px;
+        font-size: 7px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+    }
+}
