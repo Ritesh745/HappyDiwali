@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#100b13">
+    <title>Shubh Deepawali 🪔</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Great+Vibes&family=Hind:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="dark-mode">
+
+    <canvas id="fireworks"></canvas>
+    <div class="ambient-glow"></div>
+    <div class="grain"></div>
+
+    <!-- Decorative background -->
+    <div class="background-decor">
+        <div class="mandala mandala-one">✺</div>
+        <div class="mandala mandala-two">❋</div>
+        <div class="floating-petals" id="petals"></div>
+    </div>
+
+    <!-- Top decorative lights -->
+    <div class="light-string" id="lightString"></div>
+
+    <!-- Opening screen -->
+    <main class="main-container">
+
+        <section class="welcome-screen" id="welcomeScreen">
+
+            <div class="welcome-top">
+                <span class="small-star">✦</span>
+                <p>A FESTIVAL OF LIGHTS</p>
+                <span class="small-star">✦</span>
+            </div>
+
+            <div class="intro-text">
+                <p class="intro-line">Some celebrations are not just seen...</p>
+                <p class="intro-line second-line">They are felt in the heart.</p>
+            </div>
+
+            <!-- Interactive Diya -->
+            <div class="diya-stage">
+
+                <div class="diya-glow" id="diyaGlow"></div>
+
+                <div class="flame-container" id="flameContainer">
+                    <div class="flame flame-outer"></div>
+                    <div class="flame flame-middle"></div>
+                    <div class="flame flame-inner"></div>
+                    <div class="flame-core"></div>
+                </div>
+
+                <div class="diya">
+                    <div class="diya-top"></div>
+                    <div class="diya-body">
+                        <div class="diya-pattern">✧ ✦ ✧</div>
+                    </div>
+                    <div class="diya-base"></div>
+                </div>
+
+                <div class="diya-sparkles" id="diyaSparkles"></div>
+            </div>
+
+            <h1 class="opening-heading">
+                A little light,
+                <span>a lot of happiness.</span>
+            </h1>
+
+            <p class="opening-subtitle">
+                This Diwali, let's turn a little darkness<br>
+                into a whole lot of brightness.
+            </p>
+
+            <button class="light-button" id="lightButton">
+                <span>🪔</span> Light the Diya
+            </button>
+
+            <p class="tap-hint">TAP THE DIYA TO BEGIN THE MAGIC</p>
+
+        </section>
+
+        <!-- Celebration screen -->
+        <section class="celebration-screen" id="celebrationScreen">
+
+            <div class="celebration-content">
+
+                <div class="top-ornament">✧ ❈ ✧</div>
+
+                <p class="celebration-label">
+                    MAY YOUR LIFE BE FILLED WITH
+                </p>
+
+                <h1 class="diwali-title">
+                    Happy
+                    <span>Diwali</span>
+                </h1>
+
+                <h2 class="hindi-title">
+                    शुभ दीपावली
+                </h2>
+
+                <div class="golden-divider">
+                    <span>✦</span>
+                </div>
+
+                <p class="greeting-message">
+                    May the light of countless diyas illuminate
+                    your life with happiness, prosperity,
+                    love and endless possibilities.
+                </p>
+
+                <p class="hindi-message">
+                    आपके जीवन में खुशियों की रोशनी हो,
+                    हर सपना पूरा हो और हर दिन एक नई
+                    उम्मीद लेकर आए।
+                </p>
+
+                <div class="celebration-diyas">
+                    <div class="mini-diya">
+                        <span>🪔</span>
+                    </div>
+                    <div class="mini-diya">
+                        <span>🪔</span>
+                    </div>
+                    <div class="mini-diya">
+                        <span>🪔</span>
+                    </div>
+                </div>
+
+                <p class="final-wish">
+                    Keep shining. Keep smiling.
+                </p>
+
+                <div class="bottom-ornament">❈ ✧ ❈</div>
+
+                <button class="again-button" id="againButton">
+                    ✨ Celebrate Again
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Floating controls -->
+    <div class="sound-control">
+        <button id="soundButton" aria-label="Toggle ambient sound">
+            ♪ <span>Sound Off</span>
+        </button>
+    </div>
+
+    <div class="footer-note">
+        MADE WITH LOVE & LIGHT 🪔
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
